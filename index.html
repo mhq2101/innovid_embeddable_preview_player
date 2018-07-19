@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Preview Player</title>
+
+    <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="bower_components/jquery.qrcode/dist/jquery.qrcode.min.js"></script> -->
+
+    <link rel="stylesheet" href="css/main.css?cb=3591184">
+    <link rel="stylesheet" href="css/preview-player.css?cb=6550736">
+
+    <script>
+        function getSecuredCdnHost() {
+            return "s-cdn.innovid.com";
+        }
+
+        function getCdnHost() {
+            return "cdn.innovid.com";
+        }
+    </script>
+
+    <script type="text/javascript" src="js/PreviewPlayer.js?cb=6966812"></script>
+    <script type="text/javascript" src="js/preview.js?cb=5284694"></script>
+
+</head>
+
+<body>
+    
+    
+    <!-- header -->
+    <div id="headerContainer">
+        <div id="innovidLogo"></div>
+        <div id="headerSeparator"></div>
+        <div id="headerTitle">VAST End Card Preview Player&nbsp;&nbsp;</div>
+
+        
+        
+    </div>
+
+    <!--  preview player container  -->
+    <div id="previewPlayer"></div>
+
+
+    <div class="skip-replay-container"></div>
+
+    <!-- <div id="tagBox" class="tag-form-container">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody><tr>
+                <td>VAST/VPAID Tag</td>
+                <td width="412"><input type="text" id="tagURL" class="tagInput"></td>
+                <td width="109"><img src="images/btn_load.gif" class="button"></td>
+            </tr>
+        </tbody></table>
+    </div> -->
+
+    <div class="tag-form-container">
+        <form> 
+            <div style="font-size: 24px">Innovid Tag: </div>
+            <br>
+            <input id='tagInput' type="text" name="message" autocomplete="off"><br>
+            <button type="submit" id="submit"> Load Tag </button>
+          </form>
+
+    </div>
+
+    <!--  footer  -->
+    <div id="footer"></div>
+
+</body>
+</html>
+
+

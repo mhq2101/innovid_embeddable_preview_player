@@ -1,0 +1,136 @@
+.wrapper
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.vjs-video-container
+{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+}
+.end-card-container
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.skinless-player
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+
+#ivc-custom-video-player
+{
+	width: 100%;
+	height: 100%;
+}
+body
+{
+	margin: 0;
+}
+.vjs-text-track-display
+{
+	z-index: 1;
+}
+#transcript
+{
+	width:100%;
+	height:200px;
+	position: absolute;
+	margin-top: 30px;
+	display: none;
+}
+#transcript .transcript-selector
+{
+	display: none;
+}
+#transcript .transcript-body
+{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+.transcript-header {
+	padding: 5px;
+	border-bottom: 1px dashed;
+}
+
+.video-js .vjs-control-bar.force-enable {
+    visibility: visible !important;
+    opacity: 1 !important;
+    bottom: -3em !important;
+    background-color: rgba(7, 20, 30, 1);
+    display: flex;
+}
+
+.video-js .vjs-control-bar.disable {
+	display: none;
+ }
+
+.vjs-control-bar .vjs-transcript-button {
+	cursor: pointer!important;
+	display: flex;
+	color: white;
+	font-size: 16px;
+	line-height: 30px;
+	position: relative;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	-webkit-box-flex: none;
+	-moz-box-flex: none;
+	-webkit-flex: none;
+	-ms-flex: none;
+	flex: none;
+	flex-direction: row;
+}
+.vjs-control-bar .vjs-transcript-button button
+{
+	background-image: url(../img/transcriptIcon.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin: auto 0;
+	position: absolute;
+	width: 60%;
+	height: 60%;
+	align-self: center;
+}
+#transcript.visible
+{
+	display: block;
+}
+
+.video-js .vjs-current-time,
+.video-js .vjs-duration,
+.vjs-time-divider,
+.vjs-progress-control
+{
+	display: flex !important;
+}
+
+.vjs-poster
+{
+	background-color: transparent;
+}
+.vjs-progress-control.enable-scrubbing
+{
+	pointer-events: auto !important;
+}
+
+.poster {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+

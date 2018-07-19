@@ -1,0 +1,245 @@
+#orientationSwitch {
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    float: left;
+    margin-left: 35px;
+    margin-top: 8px;
+}
+
+#orientationSwitch.landscape {
+    background-image: url("../img/orientationSwitchPortrait.png");
+}
+
+#orientationSwitch.landscape:hover {
+    background-image: url("../img/orientationSwitchPortraitHover.png");
+}
+
+#orientationSwitch.portrait {
+    background-image: url("../img/orientationSwitchLandscape.png");
+}
+
+#orientationSwitch.portrait:hover {
+    background-image: url("../img/orientationSwitchLandscapeHover.png");
+}
+
+#playerContainer {
+    position: absolute;
+    margin: 0 auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 50%;
+    text-align: center;
+}
+
+#playerContainer.animate {
+    -webkit-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+}
+
+#playerContainer.smartphone {
+    top: 90px;
+    width: 680px;
+    height: 335px;
+    background-image: url("../img/smartphone.png");
+    margin-left: -340px;
+}
+
+#playerContainer.tablet {
+    top: 30px;
+    width: 700px;
+    height: 500px;
+    background-image: url("../img/tablet.png");
+    margin-left: -350px;
+}
+
+#playerContainer.desktop {
+    top: 100px;
+    width: 640px;
+    height: 390px;
+    margin-left: -325px;
+}
+
+#playerContainer.portrait {
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+#playerContainer.smartphone.portrait {
+    top: 190px !important;
+}
+
+#playerContainer.tablet.portrait {
+    top: 110px !important;
+}
+
+#previewbox {
+    /*background: #000000;*/
+}
+
+#playerContainer.smartphone #previewbox {
+    margin-top: 19px;
+    width: 525px;
+    height: 295px;
+    border: none;
+}
+
+#playerContainer.smartphone.portrait #previewbox {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    margin-top: -95px !important;
+    width: 295px !important;
+    height: 525px !important;
+}
+
+#playerContainer.tablet #previewbox {
+    margin-top: 33px;
+    width: 580px;
+    height: 435px;
+    border: none;
+}
+
+#playerContainer.tablet.portrait #previewbox {
+    transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    margin-top: -40px !important;
+    width: 435px !important;
+    height: 580px !important;
+}
+
+#playerContainer.desktop #previewbox {
+    margin: 0px auto;
+    width: 640px;
+    height: 390px;
+    border: none;
+}
+
+#buttonsContainer {
+    position: absolute;
+    height: 50px;
+    left: 50%;
+}
+
+#separator {
+    background-color: #989898;
+    width: 1px;
+    height: 19px;
+    margin-left: 19px;
+    margin-right: 19px;
+    margin-top: 15px;
+    float: left;
+}
+
+.selected {
+    border-bottom: #2694d0 solid 2px;
+}
+
+#QRCodeContainer {
+    position: absolute;
+    width: 200px;
+    height: 330px;
+    top: 215px;
+    left: 50%;
+    margin-left: 400px;
+}
+
+#desktop {
+    position: relative;
+    top: 10px;
+    width: 64px;
+    height: 24px;
+    color: #818182;
+    font-size: 15px;
+    line-height: 29.2px;
+    font-family: ProximaNova;
+    float: left;
+    cursor: pointer;
+}
+
+#smartphone {
+    position: relative;
+    top: 10px;
+    width: 84px;
+    height: 24px;
+    color: #818182;
+    font-size: 15px;
+    line-height: 29.2px;
+    font-family: ProximaNova;
+    float: left;
+    cursor: pointer;;
+}
+#tablet {
+    position: relative;
+    top: 10px;
+    width: 45px;
+    height: 24px;
+    color: #818182;
+    font-size: 15px;
+    line-height: 29.2px;
+    font-family: ProximaNova;
+    float: left;
+    cursor: pointer;
+}
+
+#QRCode {
+    background-image: url("../img/qr-code-bg.png");
+    position: absolute;
+    width: 169px;
+    height: 158px;
+    left: 9px;
+}
+
+#QRCode canvas {
+    top: 19px;
+    right: 17px;
+    position: absolute;
+}
+
+#textBox {
+    position: absolute;
+    width: 150px;
+    top: 170px;
+    left: 30px;
+    color: #818182;
+    text-align: left;
+    line-height: 20px;
+    font-family: ProximaNova;
+    font-size: 15px;
+}
+
+.title {
+    font-family: ProximaNovaBold;
+}
+
+a {
+    color:#2694d0;
+}
+
+#deviceContainer{
+    position: absolute;
+    width: 840px;
+    height: 755px;
+    left: 50%;
+    margin-left: -420px;
+    overflow: hidden;
+    top: 110px;
+}
+
+#spinner{
+    background-image: url("../img/spinner.gif");
+    background-size: contain;
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    margin-left: -30px;
+    top: 50%;
+    margin-top: -30px;
+}

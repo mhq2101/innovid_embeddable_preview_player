@@ -1,0 +1,49 @@
+{
+    "custom-player-id": "333333",
+    "custom-player-name": "player_01",
+    "video-config": {
+      "external-video": {
+        "enabled": true,
+        "renditions": {
+          "mp4": "https://s-static.innovid.com/media/encoded/02_17/56534/2_source_43523_117408.mp4"
+        }
+      },
+      "poster-image": "./img/posterplaceholder.jpg"
+    },
+    "creative-config": {
+      "adTagUrl": ""
+    },
+    "player-config": {
+      "auto-play": false,
+      "controlBar": {
+        "enabled": true,
+        "auto-hide": false,
+        "enable-scrub": false,
+        "postion": "below",
+        "children": [
+          "playToggle",
+          "volumePanel",
+          "currentTimeDisplay",
+          "timeDivider",
+          "durationDisplay",
+          "progressControl",
+          "fullscreenToggle"
+        ]
+      },
+      "style": {
+        "controlBar": {
+          "bg-color": "#07141e",
+          "buttons-color": "#DC1431"
+        }
+      }
+    },
+    "extras": {
+      "cc": {
+        "enabled": true,
+        "url": "./cc/SO_Eunice_60_08b.vtt"
+      },
+      "transcript": {
+        "enabled": false
+      }
+    }
+  }

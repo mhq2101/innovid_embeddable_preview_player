@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" />
+  <component name="SbtLocalSettings">
+    <option name="modificationStamps">
+      <map>
+        <entry key="$USER_HOME$/Downloads/login-server" value="1479954590000" />
+        <entry key="$USER_HOME$/Downloads/play-oauth2-scala" value="1441333730000" />
+        <entry key="$USER_HOME$/personal/livin/niagra" value="1467742360000" />
+        <entry key="$USER_HOME$/personal/livin/securesocial" value="1444836471000" />
+        <entry key="$USER_HOME$/personal/qcontrol" value="1498376048000" />
+        <entry key="$USER_HOME$/projects/analytics-web/AnalyticsWeb" value="1494853787000" />
+        <entry key="$USER_HOME$/projects/atlas" value="1502623523000" />
+        <entry key="$USER_HOME$/projects/campaign-service" value="1477564857000" />
+        <entry key="$USER_HOME$/projects/campaign-submission" value="1485258486000" />
+        <entry key="$USER_HOME$/projects/campaign-updates-serializer" value="1490515906000" />
+        <entry key="$USER_HOME$/projects/cmt-asset-library" value="1479284689000" />
+        <entry key="$USER_HOME$/projects/cmt-navigator" value="1486557113000" />
+        <entry key="$USER_HOME$/projects/deus" value="7297543645000" />
+        <entry key="$USER_HOME$/projects/jrtr/JRTR" value="1418223486000" />
+        <entry key="$USER_HOME$/projects/mvnrepository/Monitoring" value="1496756651000" />
+        <entry key="$USER_HOME$/projects/noto/noto" value="1454884441000" />
+        <entry key="$USER_HOME$/projects/scalator" value="1502617360000" />
+        <entry key="$USER_HOME$/projects/smart-platform-notifications" value="4420905949000" />
+        <entry key="$USER_HOME$/projects/smart-platform-notifications/command-processor" value="1473576317000" />
+        <entry key="$USER_HOME$/projects/smart-platform-notifications/frontend" value="1472049162000" />
+        <entry key="$USER_HOME$/projects/targeting" value="1448798907000" />
+        <entry key="$USER_HOME$/projects/user-service" value="1472108268000" />
+        <entry key="$USER_HOME$/projects/wolf" value="1467785359000" />
+      </map>
+    </option>
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+</project>

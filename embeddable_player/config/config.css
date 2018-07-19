@@ -1,0 +1,28 @@
+.vjs-ad-playing .vjs-play-control.vjs-paused,
+.vjs-ad-playing .vjs-volume-level,
+.vjs-ad-playing .vjs-play-progress
+{
+    /*background-color: #DC1431 !important;*/
+}
+/*.vjs-mute-control,*/
+/*.vjs-volume-level,*/
+/*.vjs-play-progress,*/
+/*.vjs-load-progress,*/
+/*.vjs-play-control*/
+/*{*/
+    /*color: red !important;*/
+/*}*/
+.vjs-control-bar
+{
+    /*background-color: rgba(7, 20, 30, .8) !important;*/
+    /*color: red !important;*/
+}
+
+.change-ad-opt-test-button
+{
+    position: absolute;
+    background-color: #ff0000;
+    width:150px;
+    height: 150px;
+    z-index: 99;
+}
