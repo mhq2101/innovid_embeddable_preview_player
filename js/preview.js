@@ -64,12 +64,11 @@
                     
                     //make relative path
                     return '../embeddable_player/index.html?playerID=configMobile&tag=' + encodeURIComponent(params.tag)
-                    // return 'http://localhost:8080/?playerID=configMobile&tag=' + encodeURIComponent(params.tag)
+                
                 }
                 else {
                     return '../embeddable_player/index.html?playerID=configMobile&tag=DEFAULT'
-                    // return '../embeddable_player/index.html?playerID=configMobile&tag=' + encodeURIComponent('https://rtr.innovid.com/r1.5a4fc10f834029.15254086')
-                    // return 'http://localhost:8080/?playerID=configMobile&tag=' + encodeURIComponent('https://rtr.innovid.com/r1.5a4fc10f834029.15254086')
+                  
                 }
 
 
@@ -78,12 +77,11 @@
             forDesktop: function () {
                 if (params.tag) {
                     return '../embeddable_player/index.html?playerID=config&tag=' + encodeURIComponent(params.tag)
-                    // return 'http://localhost:8080/?playerID=config&tag=' + encodeURIComponent(params.tag)
+
                 }
                 else {
                     return '../embeddable_player/index.html?playerID=configMobile&tag=DEFAULT'
-                    // return '../embeddable_player/index.html?playerID=config&tag=' + encodeURIComponent('https://rtr.innovid.com/r1.5a4fc10f834029.15254086')
-                    // return 'http://localhost:8080/?playerID=config&tag=' + encodeURIComponent('https://rtr.innovid.com/r1.5a4fc10f834029.15254086')
+                 
                 }
                 
             }

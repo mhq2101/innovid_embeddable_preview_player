@@ -106,7 +106,7 @@ window.onload = function () {
             type: 'get',
             success: function (data) {
                 //validating endcard tag
-                if (data.platform.id === 17) {
+                if (data.platform.id !== 8) {
                     var img = $("<img class = 'poster' src='img/posterplaceholder.jpg'>")
                     $('body').html(img)
                     alert('This is not a valid end card tag: Please use a standard VAST or VPAID html pre-roll tag');
