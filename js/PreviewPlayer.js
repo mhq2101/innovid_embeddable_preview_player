@@ -1,4 +1,4 @@
-
+var defaultPlayer = 'smartphone';
 var PreviewPlayer = function (getAdUrl) {
     var that = this,
         enabledDevices = [],
@@ -11,7 +11,6 @@ var PreviewPlayer = function (getAdUrl) {
             smartphone: getAdUrl.forMobile,
             tablet: getAdUrl.forMobile
         };
-    console.log(getAdUrl.forDesktop())
     // for preloading images
     var smartphoneImage,
         tabletImage;
@@ -108,7 +107,7 @@ var PreviewPlayer = function (getAdUrl) {
     this.switchDevice = function (device) {
         var prevDevice = currentDevice;
         currentDevice = device;
-
+        defaultPlayer = device;
         deselectAllDevices();
         selectDevice(device);
 

@@ -119,10 +119,7 @@ body
 	display: flex !important;
 }
 
-.vjs-poster
-{
-	background-color: transparent;
-}
+
 .vjs-progress-control.enable-scrubbing
 {
 	pointer-events: auto !important;

@@ -29,6 +29,8 @@ html {
 
 body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
     /* text-align: center; */
 }
 
@@ -76,9 +78,14 @@ body {
 
 .tag-form-container {
     position: absolute;
-    top: 250px;
-    
-    
+    bottom: 50px;
+    width: 670px;
+    align-self: center;
+}
+.tag-form-container form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
 }
 
 input[type=text] {
@@ -94,7 +101,9 @@ input[type=text] {
 }
 
 #tagInput {
-    width: 450px;
+    text-align: left;
+    flex-grow: 5;
+    padding: 12px 0px 12px 12px;
 }
 
 button {

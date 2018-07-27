@@ -16,15 +16,15 @@ window.onload = function () {
 
     //MESSAGE EVENT HANDLER
     eventer(messageEvent, function (e) {
-        if (e.data === 'skipTrigger') {
-            player.trigger('vast.adEnd');
+        // if (e.data === 'skipTrigger') {
+        //     player.trigger('vast.adEnd');
 
-        } else if (e.data === 'replayTrigger') {
-            var div = $("<div class='vjs-video-container'></div>");
-            $('.custom-player-wrapper').html(div);
-            injectCustomCSS(CONFIG_LOCATION + customPlayerID + '.css');
-            loadPlayerConfig(CONFIG_LOCATION + customPlayerID + '.json');
-        }
+        // } else if (e.data === 'replayTrigger') {
+        //     var div = $("<div class='vjs-video-container'></div>");
+        //     $('.custom-player-wrapper').html(div);
+        //     injectCustomCSS(CONFIG_LOCATION + customPlayerID + '.css');
+        //     loadPlayerConfig(CONFIG_LOCATION + customPlayerID + '.json');
+        // }
     });
 
     var vars = getUrlVars(),
@@ -77,9 +77,10 @@ window.onload = function () {
     }
 
     function initTagWithPlayer(config, adTagUrl) {
-        console.log(adTagUrl)
+       
         if (adTagUrl === 'DEFAULT') {
-            var img = $("<img class = 'poster' src='img/posterplaceholder.jpg'>")
+            
+            var img = $('<div class="vjs-poster" tabindex="-1" aria-disabled="false" style="cursor:default; background-image: url(&quot;./img/posterplaceholder.jpg&quot;);"></div>');
             $('body').html(img)
             return;
         }
@@ -96,7 +97,7 @@ window.onload = function () {
                 }
 
             }
-            var img = $("<img class = 'poster' src='img/posterplaceholder.jpg'>")
+            var img = $('<div class="vjs-poster" tabindex="-1" aria-disabled="false" style="cursor:default; background-image: url(&quot;./img/posterplaceholder.jpg&quot;);"></div>');
             $('body').html(img)
             alert('You have entered an incorrect tag url. Please check your tag')
         }
@@ -113,7 +114,7 @@ window.onload = function () {
 
                 }
                 else if (data.placements === undefined) {
-                    var img = $("<img class = 'poster' src='img/posterplaceholder.jpg'>")
+                    var img = $('<div class="vjs-poster" tabindex="-1" aria-disabled="false" style="cursor:default; background-image: url(&quot;./img/posterplaceholder.jpg&quot;);"></div>');
                     $('body').html(img)
                     alert('You have entered an incorrect tag url. Please check your tag')
 
@@ -205,13 +206,13 @@ window.onload = function () {
 
                             player.on('vast.adStart', function () {
 
-                                parent.postMessage('showSkip', "*");
-                                // var skipButton = $("<button class='change-ad-opt-test-button'>SSKIPP DOE</button>")
-                                // skipButton.on('click', () => {
-                                //     // player.currentTime(player.duration())
-                                //     player.trigger('vast.adEnd');
-                                // })
-                                // $('.custom-player-wrapper').append(skipButton)
+                                // parent.postMessage('showSkip', "*");
+                                var skipButton = $("<div class='change-ad-opt-test-button'></div>")
+                                skipButton.on('click', () => {
+                                    // player.currentTime(player.duration())
+                                    player.trigger('vast.adEnd');
+                                })
+                                $('.custom-player-wrapper').append(skipButton)
 
                                 if (config['video-config']['external-video'].enabled) {
                                     overridePrerollWithExternalVideo(config['video-config']['external-video'].renditions.mp4);
@@ -296,6 +297,7 @@ window.onload = function () {
                                     isCompanionOnDom = true;
                                     iframe.style = 'visibility:visible';
                                     document.querySelector('.vjs-video-container').style = 'visibility:hidden';
+                                    document.querySelector('.change-ad-opt-test-button').style = 'visibility:hidden';
                                     
                                 } else if (!companionPresent) {
                                     initTagWithPlayer(config, adTagUrl);
