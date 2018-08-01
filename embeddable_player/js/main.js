@@ -77,9 +77,9 @@ window.onload = function () {
     }
 
     function initTagWithPlayer(config, adTagUrl) {
-       
+
         if (adTagUrl === 'DEFAULT') {
-            
+
             var img = $('<div class="vjs-poster" tabindex="-1" aria-disabled="false" style="cursor:default; background-image: url(&quot;./img/posterplaceholder.jpg&quot;);"></div>');
             $('body').html(img)
             return;
@@ -92,7 +92,6 @@ window.onload = function () {
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i][0] === 'r' && arr[i][1] === '1') {
                     var returnVal = arr[i].split(';')[0];
-                    console.log(returnVal)
                     return returnVal;
                 }
 
@@ -120,16 +119,16 @@ window.onload = function () {
 
                 }
                 else {
-                    var x = new XMLHttpRequest();
-                    x.onreadystatechange = function () {
-                        if (x.readyState == 4 && x.status == 200) {
-                            var parser = new DOMParser();
-                            var xmlDoc = parser.parseFromString(x.response, "text/xml");
-                            // console.log(creatives[9])
-                            var companion = xmlDoc.getElementsByTagName('CompanionAds')[0].getElementsByTagName('IFrameResource')[0]
-                            // console.log('companion', companion)
-                            var companionURL = companion.textContent
-
+                    $.ajax({
+                        type: 'GET',
+                        url: adTagUrl,
+                        dataType: 'xml',
+                        success: function (xml) {
+                            var campanion;
+                            if  (xml.getElementsByTagName('CompanionAds')[0]) {
+                                companion = xml.getElementsByTagName('CompanionAds')[0].getElementsByTagName('IFrameResource')[0]
+                                var companionURL = companion.textContent
+                            }
                             if (companionURL) {
                                 companionPresent = true;
                                 iframe = document.createElement('iframe');
@@ -138,180 +137,210 @@ window.onload = function () {
                                 iframe.style = 'visibility:hidden'
                                 if (companionPresent) {
                                     $('.custom-player-wrapper').append(iframe);
-                                    
+                                    var adsSetupPlugin = molVastSetup;
+                                    if (!player || !player.activePlugins_['ads-setup']) videojs.registerPlugin('ads-setup', adsSetupPlugin);
+                                    var videoContainer = document.querySelector('div.vjs-video-container');
+                                    createVideoEl(config, videoContainer, function (videoEl) {
+                                        adPluginOpts = {
+                                            "plugins": {
+                                                "ads-setup": {
+                                                    "adCancelTimeout": 50000,
+                                                    "adsEnabled": true,
+                                                    "preferredTech": "html5",
+                                                    "nativeControlsForTouch": false,
+                                                    "adTagUrl": adTagUrl
+                                                }
+                                            },
+                                            controlBar: {
+                                                children: config['player-config'].controlBar.children
+                                            }
+                                        };
+
+                                        player = videojs(videoEl, adPluginOpts);
+
+
+
+                                        if (player) {
+                                            player.on('vast.aderror', function (evt) {
+                                                var error = evt.error;
+                                                if (error && error.message) {
+                                                    messages.error(error.message);
+                                                }
+                                            });
+                                            if (!config['player-config'].controlBar.enabled) {
+                                                $('.vjs-control-bar').addClass('disable');
+                                            }
+                                            if (config['player-config'].controlBar['enable-scrub']) {
+                                                enableScrubbing();
+                                            }
+                                            if (!config['player-config'].controlBar['auto-hide'] && config['player-config'].controlBar.enabled) {
+                                                $('.vjs-control-bar').addClass('force-enable');
+                                            }
+                                            applyPlayerStyle(config['player-config'].style);
+
+                                            player.on('vast.adStart', function () {
+
+                                                // parent.postMessage('showSkip', "*");
+                                                var skipButton = $("<div class='change-ad-opt-test-button'></div>")
+                                                skipButton.on('click', () => {
+                                                    // player.currentTime(player.duration())
+                                                    player.trigger('vast.adEnd');
+                                                })
+                                                $('.custom-player-wrapper').append(skipButton)
+
+                                                if (config['video-config']['external-video'].enabled) {
+                                                    overridePrerollWithExternalVideo(config['video-config']['external-video'].renditions.mp4);
+                                                    player.play();
+                                                }
+                                                if (!$("#ivc-custom-video-player").hasClass('vjs-has-started')) {
+                                                    $('#ivc-custom-video-player').addClass('vjs-has-started');
+                                                }
+                                                if (config.extras.cc.enabled) {
+                                                    player.addRemoteTextTrack({
+                                                        "label": "captions on",
+                                                        "kind": "subtitles",
+                                                        "src": config.extras.cc.url
+                                                    }, false);
+                                                }
+
+                                                if (config.extras.transcript.enabled && !document.getElementById('transcript')) {
+                                                    setTimeout(function ()//transcript cue on ios are available only after the video starts playing.
+                                                    {
+                                                        var transcriptOptions =
+                                                            {
+                                                                showTrackSelector: true,
+                                                                scrollToCenter: true
+                                                            };
+                                                        var transcript = player.transcript(transcriptOptions);
+                                                        var transcriptContainer = $('<div id="transcript">');
+                                                        transcriptContainer.append(transcript.el());
+                                                        $('.vjs-video-container').append(transcriptContainer);
+                                                        addTranscriptButton($('.vjs-control-bar'));
+                                                    }, 200);
+                                                }
+                                                try {
+                                                    $('.VPAID-container iframe')[0].contentWindow.addEventListener("message", receivePostMsgFromCreative, false);
+                                                } catch (e) {
+                                                }
+                                                ;
+
+                                                player.on('play', function () {
+                                                });
+                                                player.on('pause', function () {
+                                                });
+                                            });
+
+                                            player.on('vast.adEnd', function () {
+                                                $('#video-player_html5_api').attr('src', DEFAULT_VIDEO);
+                                                player.currentTime(player.duration());
+                                                // showPlayButton();
+                                                // var x = new XMLHttpRequest();
+                                                // x.onreadystatechange = function () {
+                                                //     if (x.readyState == 4 && x.status == 200) {
+                                                //         var parser = new DOMParser();
+                                                //         var xmlDoc = parser.parseFromString(x.response, "text/xml");
+                                                //         // console.log(creatives[9])
+                                                //         var companion = xmlDoc.getElementsByTagName('CompanionAds')[0].getElementsByTagName('IFrameResource')[0]
+                                                //         console.log('companion', companion)
+                                                //         var companionURL = companion.textContent
+                                                //         var iframe = document.createElement('iframe');
+                                                //         iframe.src = companionURL;
+                                                //         iframe.className = 'end-card-container'
+                                                //         var div = $("<div class='vjs-video-container'></div>")
+                                                //         $('.custom-player-wrapper').html(iframe);
+                                                //         // var replayAdButton = $("<button class='change-ad-opt-test-button'>REPLAY AD</button>");
+                                                //         // $('.custom-player-wrapper').append(replayAdButton)
+                                                //         parent.postMessage('showReplay', '*')
+                                                //         replayAdButton.on('click', () => {
+                                                //             $('.custom-player-wrapper').html(div)
+                                                //             injectCustomCSS(CONFIG_LOCATION + customPlayerID + '.css');
+                                                //             loadPlayerConfig(CONFIG_LOCATION + customPlayerID + '.json');
+                                                //         })
+
+                                                //     }
+                                                // };
+                                                // x.open("GET", adTagUrl, true);
+                                                // x.send()
+                                                // if(companionPresent) {
+                                                //     $('.custom-player-wrapper').html(iframe);
+                                                // }
+                                                // else {
+                                                //     initTagWithPlayer(config,adTagUrl)
+                                                // }
+                                                if (companionPresent && !isCompanionOnDom) {
+                                                    isCompanionOnDom = true;
+                                                    iframe.style = 'visibility:visible';
+                                                    document.querySelector('.vjs-video-container').style = 'visibility:hidden';
+
+                                                } else if (!companionPresent) {
+                                                    // initTagWithPlayer(config, adTagUrl);
+                                                }
+                                                document.querySelector('.change-ad-opt-test-button').style = 'visibility:hidden';
+                                                // $('.custom-player-wrapper').html(iframe);
+                                                // parent.postMessage('showReplay', '*')
+                                            });
+                                            player.on('vast.reset', function () {
+
+                                            });
+
+
+                                        }
+                                    });
                                 }
+                            } else {
+                                alert('This VAST tag contains no end card and therefore is not compatible with this player')
+                                return
+
                             }
-
-
-                            // div = $("<div class='vjs-video-container'></div>")
-                            // $('.custom-player-wrapper').html(iframe);
-                            // var replayAdButton = $("<button class='change-ad-opt-test-button'>REPLAY AD</button>");
-                            // $('.custom-player-wrapper').append(replayAdButton)
-                            // parent.postMessage('showReplay', '*')
-                            // replayAdButton.on('click', () => {
-                            //     $('.custom-player-wrapper').html(div)
-                            //     injectCustomCSS(CONFIG_LOCATION + customPlayerID + '.css');
-                            //     loadPlayerConfig(CONFIG_LOCATION + customPlayerID + '.json');
-                            // })
-
                         }
-                    };
-                    x.open("GET", adTagUrl, true);
-                    x.send()
+
+                    })
+                    // var x = new XMLHttpRequest();
+                    // x.onreadystatechange = function () {
+                    //     if (x.readyState == 4 && x.status == 200) {
+                    //         var parser = new DOMParser();
+                    //         var xmlDoc = parser.parseFromString(x.response, "text/xml");
+                    //         // console.log(creatives[9])
+                    //         var companion = xmlDoc.getElementsByTagName('CompanionAds')[0].getElementsByTagName('IFrameResource')[0]
+                    //         // console.log('companion', companion)
+                    //         var companionURL = companion.textContent
+
+                    //         if (companionURL) {
+                    //             companionPresent = true;
+                    //             iframe = document.createElement('iframe');
+                    //             iframe.src = companionURL;
+                    //             iframe.className = 'end-card-container'
+                    //             iframe.style = 'visibility:hidden'
+                    //             if (companionPresent) {
+                    //                 $('.custom-player-wrapper').append(iframe);
+
+                    //             }
+                    //         } else {
+                    //             alert ('This VAST tag contains no end card and therefore is not compatible with this player')
+
+                    //         }
+
+
+                    //         // div = $("<div class='vjs-video-container'></div>")
+                    //         // $('.custom-player-wrapper').html(iframe);
+                    //         // var replayAdButton = $("<button class='change-ad-opt-test-button'>REPLAY AD</button>");
+                    //         // $('.custom-player-wrapper').append(replayAdButton)
+                    //         // parent.postMessage('showReplay', '*')
+                    //         // replayAdButton.on('click', () => {
+                    //         //     $('.custom-player-wrapper').html(div)
+                    //         //     injectCustomCSS(CONFIG_LOCATION + customPlayerID + '.css');
+                    //         //     loadPlayerConfig(CONFIG_LOCATION + customPlayerID + '.json');
+                    //         // })
+
+                    //     }
+                    // };
+                    // x.open("GET", adTagUrl, true);
+                    // x.send()
 
 
 
 
-                    var adsSetupPlugin = molVastSetup;
-                    if (!player || !player.activePlugins_['ads-setup']) videojs.registerPlugin('ads-setup', adsSetupPlugin);
-                    var videoContainer = document.querySelector('div.vjs-video-container');
-                    createVideoEl(config, videoContainer, function (videoEl) {
-                        adPluginOpts = {
-                            "plugins": {
-                                "ads-setup": {
-                                    "adCancelTimeout": 50000,
-                                    "adsEnabled": true,
-                                    "preferredTech": "html5",
-                                    "nativeControlsForTouch": false,
-                                    "adTagUrl": adTagUrl
-                                }
-                            },
-                            controlBar: {
-                                children: config['player-config'].controlBar.children
-                            }
-                        };
 
-                        player = videojs(videoEl, adPluginOpts);
-
-
-
-                        if (player) {
-                            player.on('vast.aderror', function (evt) {
-                                var error = evt.error;
-                                console.log('mumumu')
-                                if (error && error.message) {
-                                    messages.error(error.message);
-                                }
-                            });
-                            if (!config['player-config'].controlBar.enabled) {
-                                $('.vjs-control-bar').addClass('disable');
-                            }
-                            if (config['player-config'].controlBar['enable-scrub']) {
-                                enableScrubbing();
-                            }
-                            if (!config['player-config'].controlBar['auto-hide'] && config['player-config'].controlBar.enabled) {
-                                $('.vjs-control-bar').addClass('force-enable');
-                            }
-                            applyPlayerStyle(config['player-config'].style);
-
-                            player.on('vast.adStart', function () {
-
-                                // parent.postMessage('showSkip', "*");
-                                var skipButton = $("<div class='change-ad-opt-test-button'></div>")
-                                skipButton.on('click', () => {
-                                    // player.currentTime(player.duration())
-                                    player.trigger('vast.adEnd');
-                                })
-                                $('.custom-player-wrapper').append(skipButton)
-
-                                if (config['video-config']['external-video'].enabled) {
-                                    overridePrerollWithExternalVideo(config['video-config']['external-video'].renditions.mp4);
-                                    player.play();
-                                }
-                                if (!$("#ivc-custom-video-player").hasClass('vjs-has-started')) {
-                                    $('#ivc-custom-video-player').addClass('vjs-has-started');
-                                }
-                                if (config.extras.cc.enabled) {
-                                    player.addRemoteTextTrack({
-                                        "label": "captions on",
-                                        "kind": "subtitles",
-                                        "src": config.extras.cc.url
-                                    }, false);
-                                }
-
-                                if (config.extras.transcript.enabled && !document.getElementById('transcript')) {
-                                    setTimeout(function ()//transcript cue on ios are available only after the video starts playing.
-                                    {
-                                        var transcriptOptions =
-                                            {
-                                                showTrackSelector: true,
-                                                scrollToCenter: true
-                                            };
-                                        var transcript = player.transcript(transcriptOptions);
-                                        var transcriptContainer = $('<div id="transcript">');
-                                        transcriptContainer.append(transcript.el());
-                                        $('.vjs-video-container').append(transcriptContainer);
-                                        addTranscriptButton($('.vjs-control-bar'));
-                                    }, 200);
-                                }
-                                try {
-                                    $('.VPAID-container iframe')[0].contentWindow.addEventListener("message", receivePostMsgFromCreative, false);
-                                } catch (e) {
-                                }
-                                ;
-
-                                player.on('play', function () {
-                                });
-                                player.on('pause', function () {
-                                });
-                            });
-
-                            player.on('vast.adEnd', function () {
-                                $('#video-player_html5_api').attr('src', DEFAULT_VIDEO);
-                                player.currentTime(player.duration());
-                                // showPlayButton();
-                                // var x = new XMLHttpRequest();
-                                // x.onreadystatechange = function () {
-                                //     if (x.readyState == 4 && x.status == 200) {
-                                //         var parser = new DOMParser();
-                                //         var xmlDoc = parser.parseFromString(x.response, "text/xml");
-                                //         // console.log(creatives[9])
-                                //         var companion = xmlDoc.getElementsByTagName('CompanionAds')[0].getElementsByTagName('IFrameResource')[0]
-                                //         console.log('companion', companion)
-                                //         var companionURL = companion.textContent
-                                //         var iframe = document.createElement('iframe');
-                                //         iframe.src = companionURL;
-                                //         iframe.className = 'end-card-container'
-                                //         var div = $("<div class='vjs-video-container'></div>")
-                                //         $('.custom-player-wrapper').html(iframe);
-                                //         // var replayAdButton = $("<button class='change-ad-opt-test-button'>REPLAY AD</button>");
-                                //         // $('.custom-player-wrapper').append(replayAdButton)
-                                //         parent.postMessage('showReplay', '*')
-                                //         replayAdButton.on('click', () => {
-                                //             $('.custom-player-wrapper').html(div)
-                                //             injectCustomCSS(CONFIG_LOCATION + customPlayerID + '.css');
-                                //             loadPlayerConfig(CONFIG_LOCATION + customPlayerID + '.json');
-                                //         })
-
-                                //     }
-                                // };
-                                // x.open("GET", adTagUrl, true);
-                                // x.send()
-                                // if(companionPresent) {
-                                //     $('.custom-player-wrapper').html(iframe);
-                                // }
-                                // else {
-                                //     initTagWithPlayer(config,adTagUrl)
-                                // }
-                                if (companionPresent && !isCompanionOnDom) {
-                                    isCompanionOnDom = true;
-                                    iframe.style = 'visibility:visible';
-                                    document.querySelector('.vjs-video-container').style = 'visibility:hidden';
-                                    document.querySelector('.change-ad-opt-test-button').style = 'visibility:hidden';
-                                    
-                                } else if (!companionPresent) {
-                                    initTagWithPlayer(config, adTagUrl);
-                                }
-                                // $('.custom-player-wrapper').html(iframe);
-                                parent.postMessage('showReplay', '*')
-                            });
-                            player.on('vast.reset', function () {
-
-                            });
-
-
-                        }
-                    });
                 }
             },
             error: function (error) {

@@ -262,9 +262,9 @@ var PreviewPlayer = function (getAdUrl) {
 
     function preloadDeviceImages() {
         smartphoneImage = new Image();
-        smartphoneImage.src = "../img/smartphone.png";
+        smartphoneImage.src = "img/smartphone.png";
         tabletImage = new Image();
-        tabletImage.src = "../img/tablet.png";
+        tabletImage.src = "img/tablet.png";
     }
 
     function hasOwnValue(obj, val) {

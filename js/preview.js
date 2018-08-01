@@ -17,7 +17,7 @@
             
         }
 
-        //vontain and
+        
 
         //event listener
         var eventMethod = window.addEventListener
@@ -65,11 +65,11 @@
                 if (params.tag) {
                     
                     //make relative path
-                    return '../embeddable_player/index.html?playerID=configMobile&tag=' + encodeURIComponent(params.tag)
+                    return 'embeddable_player/index.html?playerID=configMobile&tag=' + encodeURIComponent(params.tag)
                 
                 }
                 else {
-                    return '../embeddable_player/index.html?playerID=configMobile&tag=DEFAULT'
+                    return 'embeddable_player/index.html?playerID=configMobile&tag=DEFAULT'
                   
                 }
 
@@ -78,11 +78,11 @@
             },
             forDesktop: function () {
                 if (params.tag) {
-                    return '../embeddable_player/index.html?playerID=config&tag=' + encodeURIComponent(params.tag)
+                    return 'embeddable_player/index.html?playerID=config&tag=' + encodeURIComponent(params.tag)
 
                 }
                 else {
-                    return '../embeddable_player/index.html?playerID=configMobile&tag=DEFAULT'
+                    return 'embeddable_player/index.html?playerID=configMobile&tag=DEFAULT'
                  
                 }
                 
