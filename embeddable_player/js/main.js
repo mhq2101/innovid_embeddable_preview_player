@@ -130,11 +130,13 @@ window.onload = function () {
                                 var companionURL = companion.textContent
                             }
                             if (companionURL) {
+                                parent.postMessage('showShare', "*");
                                 companionPresent = true;
                                 iframe = document.createElement('iframe');
                                 iframe.src = companionURL;
-                                iframe.className = 'end-card-container'
-                                iframe.style = 'visibility:hidden'
+                                iframe.className = 'end-card-container';
+                                iframe.style = 'visibility:hidden';
+                                iframe.scrolling = 'no';
                                 if (companionPresent) {
                                     $('.custom-player-wrapper').append(iframe);
                                     var adsSetupPlugin = molVastSetup;
@@ -295,48 +297,7 @@ window.onload = function () {
                         }
 
                     })
-                    // var x = new XMLHttpRequest();
-                    // x.onreadystatechange = function () {
-                    //     if (x.readyState == 4 && x.status == 200) {
-                    //         var parser = new DOMParser();
-                    //         var xmlDoc = parser.parseFromString(x.response, "text/xml");
-                    //         // console.log(creatives[9])
-                    //         var companion = xmlDoc.getElementsByTagName('CompanionAds')[0].getElementsByTagName('IFrameResource')[0]
-                    //         // console.log('companion', companion)
-                    //         var companionURL = companion.textContent
-
-                    //         if (companionURL) {
-                    //             companionPresent = true;
-                    //             iframe = document.createElement('iframe');
-                    //             iframe.src = companionURL;
-                    //             iframe.className = 'end-card-container'
-                    //             iframe.style = 'visibility:hidden'
-                    //             if (companionPresent) {
-                    //                 $('.custom-player-wrapper').append(iframe);
-
-                    //             }
-                    //         } else {
-                    //             alert ('This VAST tag contains no end card and therefore is not compatible with this player')
-
-                    //         }
-
-
-                    //         // div = $("<div class='vjs-video-container'></div>")
-                    //         // $('.custom-player-wrapper').html(iframe);
-                    //         // var replayAdButton = $("<button class='change-ad-opt-test-button'>REPLAY AD</button>");
-                    //         // $('.custom-player-wrapper').append(replayAdButton)
-                    //         // parent.postMessage('showReplay', '*')
-                    //         // replayAdButton.on('click', () => {
-                    //         //     $('.custom-player-wrapper').html(div)
-                    //         //     injectCustomCSS(CONFIG_LOCATION + customPlayerID + '.css');
-                    //         //     loadPlayerConfig(CONFIG_LOCATION + customPlayerID + '.json');
-                    //         // })
-
-                    //     }
-                    // };
-                    // x.open("GET", adTagUrl, true);
-                    // x.send()
-
+    
 
 
 
@@ -352,8 +313,6 @@ window.onload = function () {
 
 
     }
-    //on video end, take iframe html, append to dom, add close button, to end experience
-
     function updateCustomPlayer(event) {
         var eventData;
         try {

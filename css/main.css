@@ -1,16 +1,16 @@
 @font-face {
     font-family: 'ProximaNova';
-    src: url('../fonts/ProximaNova-Regular.otf');
+    src: url('fonts/ProximaNova-Regular.otf');
 }
 
 @font-face {
     font-family: 'ProximaNovaBold';
-    src: url('../fonts/ProximaNova-Bold.otf');
+    src: url('fonts/ProximaNova-Bold.otf');
 }
 
 @font-face {
     font-family: 'ProximaNovaLight';
-    src: url('../fonts/ProximaNova-Light.otf');
+    src: url('fonts/ProximaNova-Light.otf');
 }
 
 html {
@@ -33,6 +33,30 @@ body {
     flex-direction: column;
     /* text-align: center; */
 }
+.tag-form-container2 {
+    position: absolute;
+    bottom: 120px;
+    width: 600px;
+    align-self: center;
+    z-index: 99;
+}
+.tag-form-container2 div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#share-button {
+    background-image: url("../img/share.png");
+	background-repeat: no-repeat;
+	background-position: center;
+    background-size: contain;
+    width: 75px;
+}
+#tagOutput {
+    text-align: left;
+    flex-grow: 5;
+    padding: 12px 0px 12px 12px;
+}
 
 #headerContainer{
     box-shadow: 1px 3px 2px 0px rgba(0, 0, 0, 0.17);
@@ -48,7 +72,7 @@ body {
     top:22px;
     left: 91px;
     text-align: center;
-    background-image: url("../img/innovidLogo.png");
+    background-image: url("img/innovidLogo.png");
 }
 #headerSeparator{
     position: absolute;
@@ -56,7 +80,7 @@ body {
     height: 37px;
     left: 239px;
     top: 15px;
-    background-image: url("../img/headerSeparator.png");
+    background-image: url("img/headerSeparator.png");
 }
 #headerTitle{
     position: absolute;
@@ -113,7 +137,7 @@ button {
 }
 
 #footer {
-    background-image: url("../img/copyright.png");
+    background-image: url("img/copyright.png");
     position: fixed;
     bottom: 0px;
     width: 100%;

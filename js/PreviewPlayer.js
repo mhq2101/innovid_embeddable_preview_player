@@ -23,11 +23,9 @@ var PreviewPlayer = function (getAdUrl) {
         currentOrientation = defaultOrientation;
 
         var buttonsContainer = $('<div id="buttonsContainer"></div>'),
-            // qrCodeContainer = $('<div id="QRCodeContainer"></div>'),
             deviceContainer = $('<div id="deviceContainer"></div>');
 
         buttonsContainer.appendTo(container);
-        // qrCodeContainer.appendTo(container);
         deviceContainer.appendTo(container);
 
         var buttonsContainerWidth = 0;
@@ -68,7 +66,7 @@ var PreviewPlayer = function (getAdUrl) {
         spinner.appendTo(playerContainer);
         spinner.hide();
 
-        var iframe = $('<iframe id="previewbox"/>');
+        var iframe = $('<iframe id="previewbox" scrolling="no"/>');
         allowFullscreenOnIframe(iframe);
 
         playerContainer.append(iframe);
@@ -256,8 +254,6 @@ var PreviewPlayer = function (getAdUrl) {
         function hideOrientationSwitch() { $("#orientationSwitch").hide(); }
         function showOrientationSwitch() { $("#orientationSwitch").show(); }
 
-        function hideQRCode() { $("#QRCodeContainer").hide(); }
-        function showQRCode() { $("#QRCodeContainer").show(); }
     }
 
     function preloadDeviceImages() {
