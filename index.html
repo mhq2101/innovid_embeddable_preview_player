@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -26,17 +25,81 @@
 </head>
 
 <body>
-    
-    
+
+
     <!-- header -->
-    <div id="headerContainer">
+    <!-- <div id="headerContainer">
         <div id="innovidLogo"></div>
         <div id="headerSeparator"></div>
         <div id="headerTitle">VAST End Card Preview Player&nbsp;&nbsp;</div>
 
         
         
-    </div>
+    </div> -->
+
+    <div id="pageLayout" class="height100 ng-scope" style="display: flex;flex-direction: column;">
+            <header class="header-layout width100 flex-container">
+                <section id="dashboardLogoBig" class="flex-container flex-content-center flex-align-center flex-fixed">
+                    <a class="dashboard-logo" href="/" target="_parent">
+            <div class="icon-innovid-logo"></div>
+            <div class="logo-sub-text">Preview</div>
+        </a>
+                </section>
+                <section class="width100 flex-container flex-col flex-content-space-between">
+                    <section id="dashboardMetadata" class="flex-container">
+            <div class="flex-stretch flex-container flex-align-center">
+                <div id="dashboardLogoSmall">
+                    <a class="dashboard-logo" href="/analytics/campaigns.php" target="_parent">
+            <div class="icon-innovid-logo"></div>
+            <div class="logo-sub-text">Preview</div>
+        </a>
+                </div>
+                <span title="VAST End Card Preview Player" class="campaign-name ng-binding">VAST End Card Preview Player</span>
+            </div>
+            
+            
+            
+        </section>
+                    <section id="dashboardTabs" class="flex-container flex-content-space-between ng-isolate-scope" available-tabs="availableTabs" campaign-data="campaign">
+            <div class="flex-container">
+                <div id="dashboardTab" tab-text="Open Web" tab-metadata="getTabMetadataFromAvailableTabs(TAB_NAME_OPENWEB)" route-state-name="PAGE_STATE_OPENWEB" tab-selected="currentPage(PAGE_STATE_OPENWEB)" class="ng-isolate-scope">
+            <div class="tab-item flex-container flex-content-center flex-align-center tab-item-selected" ng-class="{ 'tab-item-selected': isTabSelected() , 'tab-item-hide': isTabHidden() }" ng-click="goToRoute()">
+                <span class="ng-binding">VAST End Card</span>
+            </div>
+        </div>
+                <div id="dashboardTab" tab-text="Facebook" tab-metadata="getTabMetadataFromAvailableTabs(TAB_NAME_FACEBOOK)" route-state-name="PAGE_STATE_FACEBOOK" tab-selected="currentPage(PAGE_STATE_FACEBOOK)" class="ng-isolate-scope">
+            <div class="tab-item flex-container flex-content-center flex-align-center" ng-class="{ 'tab-item-selected': isTabSelected() , 'tab-item-hide': isTabHidden() }" ng-click="goToRoute()">
+                <span class="ng-binding">PlaceHolder</span>
+            </div>
+        </div>
+                <div id="dashboardTab" tab-text="YouTube" tab-metadata="getTabMetadataFromAvailableTabs(TAB_NAME_YOUTUBE)" route-state-name="PAGE_STATE_YOUTUBE" tab-selected="currentPage(PAGE_STATE_YOUTUBE)" class="ng-isolate-scope">
+            <div class="tab-item flex-container flex-content-center flex-align-center" ng-class="{ 'tab-item-selected': isTabSelected() , 'tab-item-hide': isTabHidden() }" ng-click="goToRoute()">
+                <!-- <div class="tab-icon icon-youtube"></div> -->
+                <span class="ng-binding">PlaceHolder</span>
+            </div>
+        </div>
+            </div>
+            
+        </section>
+                </section>
+            </header>
+            
+        </div>
+
+    <!-- <header class="header-layout width100 flex-container">
+        <section class="width100 flex-container flex-col flex-content-space-between">
+            <section id="dashboardLogoBig" class="flex-container flex-content-center flex-align-center flex-fixed">
+                <a class="dashboard-logo" href="/" >
+                    <div id="innovidLogo"></div>
+                    <div class="logo-sub-text">Analytics</div>
+                </a>
+            </section>
+            <div class="flex-stretch flex-container flex-align-center">
+                <span title="Burlington Fall Fashion 2018_September'18_38070" class="campaign-name">Burlington Fall Fashion 2018_September'18_38070</span>
+            </div>
+        </section>
+        </section>
+    </header> -->
 
     <!--  preview player container  -->
     <div id="previewPlayer"></div>
@@ -56,6 +119,5 @@
     <div id="footer"></div>
 
 </body>
+
 </html>
-
-
