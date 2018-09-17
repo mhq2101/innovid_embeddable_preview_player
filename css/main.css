@@ -143,7 +143,7 @@ button {
     background: none;
     cursor: pointer;
     border-radius: 15px;
-    
+
 
    /* padding:12px; */
     
@@ -162,7 +162,6 @@ button {
 }
 
 header {
-    height: 90px;
     flex: 0 0 auto;
     background-image: linear-gradient(90deg,#027ede,#00bbd3);
 }
