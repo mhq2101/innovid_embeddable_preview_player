@@ -122,6 +122,10 @@ input[type=text] {
     background-position: 10px 10px; 
     background-repeat: no-repeat;
     padding: 12px 0px 12px 40px;
+    border: none;
+    background: none;
+    border-bottom: solid 1px #b3b0b0;
+    width: 304px;
 }
 
 #tagInput {
@@ -131,8 +135,17 @@ input[type=text] {
 }
 
 button {
+    color: #4da3d8;
+    font-size: 16px;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #4da3d8;
+    letter-spacing: 0.5px;
+    background: none;
+    cursor: pointer;
+    border-radius: 15px;
+    
 
-   padding:12px;
+   /* padding:12px; */
     
 }
 
