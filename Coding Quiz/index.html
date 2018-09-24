@@ -1,0 +1,95 @@
+<html><head>
+        <title>Preview Player</title>
+    
+        <script type="text/javascript" src="bower_components/jquery/jquery.min.js"></script>
+        <link rel="stylesheet" href="app.css">
+        <link rel="stylesheet" href="preview-player.css">
+    
+    
+    
+        <link rel="stylesheet" href="main.css">
+        <script type="text/javascript" src="app.js"></script>
+    
+    </head>
+    
+    <body>
+    
+    
+        <div id="pageLayout" class="none" style="display: flex; width: 100%">
+            <header class="header-layout  flex-container">
+                <section id="dashboardLogoBig" class="flex-container flex-content-center flex-align-center flex-fixed">
+                    <a class="dashboard-logo" href="/" target="_parent">
+                        <div class="icon-innovid-logo"></div>
+                        <div class="logo-sub-text">Preview</div>
+                    </a>
+                </section>
+                <section class=" flex-container flex-col flex-content-space-between">
+                    <section id="dashboardMetadata" class="flex-container">
+                        <div class="flex-stretch flex-container flex-align-center">
+                            <div id="dashboardLogoSmall">
+                                <a class="dashboard-logo" href="/analytics/campaigns.php" target="_parent">
+                                    <div class="icon-innovid-logo"></div>
+                                    <div class="logo-sub-text">Preview</div>
+                                </a>
+                            </div>
+                            <span title="VAST End Card Preview Player" class="campaign-name ng-binding">VAST End Card Preview Player</span>
+                        </div>
+    
+    
+    
+                    </section>
+                    <section id="dashboardTabs" class="flex-container flex-content-space-between ng-isolate-scope" available-tabs="availableTabs" campaign-data="campaign">
+                        <div class="flex-container">
+                            <div id="dashboardTab" tab-text="Open Web" tab-metadata="getTabMetadataFromAvailableTabs(TAB_NAME_OPENWEB)" route-state-name="PAGE_STATE_OPENWEB" tab-selected="currentPage(PAGE_STATE_OPENWEB)" class="ng-isolate-scope">
+                                <div class="tab-item flex-container flex-content-center flex-align-center tab-item-selected" ng-class="{ 'tab-item-selected': isTabSelected() , 'tab-item-hide': isTabHidden() }" ng-click="goToRoute()">
+                                    <span class="ng-binding">VAST End Card</span>
+                                </div>
+                            </div>
+                            <div id="dashboardTab" tab-text="Facebook" tab-metadata="getTabMetadataFromAvailableTabs(TAB_NAME_FACEBOOK)" route-state-name="PAGE_STATE_FACEBOOK" tab-selected="currentPage(PAGE_STATE_FACEBOOK)" class="ng-isolate-scope">
+                                <div class="tab-item flex-container flex-content-center flex-align-center" ng-class="{ 'tab-item-selected': isTabSelected() , 'tab-item-hide': isTabHidden() }" ng-click="goToRoute()">
+                                    <span class="ng-binding">PlaceHolder</span>
+                                </div>
+                            </div>
+                            <div id="dashboardTab" tab-text="YouTube" tab-metadata="getTabMetadataFromAvailableTabs(TAB_NAME_YOUTUBE)" route-state-name="PAGE_STATE_YOUTUBE" tab-selected="currentPage(PAGE_STATE_YOUTUBE)" class="ng-isolate-scope">
+                                <div class="tab-item flex-container flex-content-center flex-align-center" ng-class="{ 'tab-item-selected': isTabSelected() , 'tab-item-hide': isTabHidden() }" ng-click="goToRoute()">
+                                    <!-- <div class="tab-icon icon-youtube"></div> -->
+                                    <span class="ng-binding">PlaceHolder</span>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </section>
+                </section>
+            </header>
+    
+        </div>
+    
+    
+    
+        <!--  preview player container  -->
+        <div id="previewPlayer">
+            <div id="deviceContainer">
+                <div id="playerContainer" class="landscape animate smartphone">
+                    <iframe id="previewbox" scrolling="no" allowfullscreen="true"></iframe>
+                </div>
+            </div>
+    
+        </div>
+    
+    
+        <div class="skip-replay-container"></div>
+    
+        <div class="tag-form-container">
+            <div id="tag-form"> 
+                <br>
+                <input placeholder="write something here then copy it with this button -->" id="tagInput" type="text" name="message" autocomplete="off">
+                <button  id="submit"> Copy </button>
+            </div>
+        </div>
+    
+        <!--  footer  -->
+        <div id="footer"></div>
+    
+    
+    
+    </body></html>

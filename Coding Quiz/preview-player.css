@@ -8,19 +8,19 @@
 }
 
 #orientationSwitch.landscape {
-    background-image: url("../img/orientationSwitchPortrait.png");
+    background-image: url("orientationSwitchPortrait.png");
 }
 
 #orientationSwitch.landscape:hover {
-    background-image: url("../img/orientationSwitchPortraitHover.png");
+    background-image: url("orientationSwitchPortraitHover.png");
 }
 
 #orientationSwitch.portrait {
-    background-image: url("../img/orientationSwitchLandscape.png");
+    background-image: url("orientationSwitchLandscape.png");
 }
 
 #orientationSwitch.portrait:hover {
-    background-image: url("../img/orientationSwitchLandscapeHover.png");
+    background-image: url("orientationSwitchLandscapeHover.png");
 }
 
 #playerContainer {
@@ -43,7 +43,7 @@
     top: 90px;
     width: 680px;
     height: 335px;
-    background-image: url("../img/smartphone.png");
+    background-image: url("smartphone.png");
     margin-left: -340px;
 }
 
@@ -51,7 +51,7 @@
     top: 30px;
     width: 700px;
     height: 500px;
-    background-image: url("../img/tablet.png");
+    background-image: url("tablet.png");
     margin-left: -350px;
 }
 
@@ -204,11 +204,11 @@ a {
     left: 50%;
     margin-left: -420px;
     overflow: hidden;
-    top: 125px;
+    top: 110px;
 }
 
 #spinner{
-    background-image: url("../img/spinner.gif");
+    background-image: url("spinner.gif");
     background-size: contain;
     width: 60px;
     height: 60px;

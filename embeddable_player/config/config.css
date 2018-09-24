@@ -23,7 +23,7 @@
     position: absolute;
     top:0;
     right: 0;
-    background-image: url('../img/close.ico');
+    background-image: url('../img/close.png');
     background-position: center; 
     background-size: 50px 50px;
     cursor:pointer;
